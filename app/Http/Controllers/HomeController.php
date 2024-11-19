@@ -107,9 +107,24 @@ class HomeController extends Controller
         Appointment::create($input);
 
         $appointments = Appointment::with('doctor','user')->where('user_id','like', Auth::user()->id)->where('doctor_id','like', $input['doctor_id'])->first();
+        return view('user.choosepay', compact('appointments') );
+    }
+
+    public function cashpayment($doctor_id){
+        $input = $doctor_id;
+        $appointments = Appointment::with('doctor','user')->where('user_id','like', Auth::user()->id)->where('doctor_id','like', $input['doctor_id'])->first();
+
         return view('user.booksucc', compact('appointments') );
     }
 
+    public function booksucc(Request $request ){
+        $input = $request->all();
+        $appointments = Appointment::with('doctor','user')->where('user_id','like', Auth::user()->id)->where('doctor_id','like', $input['doctor_id'])->first();
+        return view('user.booksucc', compact('appointments') );
+    }
+
+
+    
 
     public function cancelappointment($id){
         Appointment::find($id)->delete();

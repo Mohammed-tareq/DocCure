@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <div class="booking-doc-info">
                         <a href="doctor-profile.html" class="booking-doc-img">
-                            <img src="{{ $doctor->image }}" alt="User Image">
+                            <img src="{{ asset($doctor->image )}}" alt="User Image">
                         </a>
                         <div class="booking-info">
                             <h4><a href="doctor-profile.html">Dr. {{ $doctor->name }}</a></h4>
@@ -87,6 +87,9 @@
                 </div>
                 <!-- /Submit Section -->
              </form>
+             
+
+
         </div>
 
 @endsection

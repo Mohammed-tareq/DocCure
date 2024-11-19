@@ -42,23 +42,21 @@
                                 <p><strong>Mr: {{ $appointments->user->name }}</strong>  your Appointment booked with <strong> Dr. {{ $appointments->doctor->name }}</strong><br> on <strong>{{ $appointments->date }}
                                     {{ formatTimeTo12Hour($appointments->time) }}
                                 </strong></p>
-                                <a href="{{ route('home') }}" class="btn btn-primary view-inv-btn">Go To Doctors</a>
                             @elseif($appointments->user->gender == 'female')
                                 <p><strong> Ms:{{ $appointments->user->name }}</strong>  your Appointment booked with <strong> Dr. {{ $appointments->doctor->name }}</strong><br> on <strong>{{ $appointments->date }}
                                     {{ formatTimeTo12Hour($appointments->time) }}
                                 </strong></p>
-                                <a href="{{ route('home') }}" class="btn btn-primary view-inv-btn">Go To Doctors</a>
                             @else
                                 <p><strong>{{ $appointments->user->name }}</strong>  your Appointment booked with <strong> Dr. {{ $appointments->doctor->name }}</strong><br> on <strong>{{ $appointments->date }}
                                     {{ formatTimeTo12Hour($appointments->time) }}
                                 </strong></p>
-                                <a href="{{ route('home') }}" class="btn btn-primary view-inv-btn">Go To Doctors</a>
-                            @endif
+                                @endif
+                                <a href="{{ route('home') }}" class="btn btn-primary view-inv-btn">Go To Appointments</a>
                         </div>
                     </div>
                 </div>
                 <!-- /Success Card -->
-
+                
 
             </div>
         </div>

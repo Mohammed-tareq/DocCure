@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,7 @@ Auth::routes();
 Route::get('/', function () {return view('welcome');})->name('welcome');
 
 // for all error page go to home if user is logged in
-Route::fallback(function () {if(Auth::check()){return redirect()->route('home');}elseif(Auth::guard('doctor')->check()){return redirect()->route('doctor.index');}});
+// Route::fallback(function (): mixed|RedirectResponse {if(Auth::check()){return redirect()->route('home');}elseif(Auth::guard('doctor')->check()){return redirect()->route('doctor.index');}});
 
 Route::middleware('auth')->group(function () {
 
@@ -30,9 +31,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/doctor/book/{id}', [HomeController::class, 'book'])->name('user.book');
     Route::post('/doctor/book', [HomeController::class, 'makeappointment'])->name('makeappointment');
+    Route::get('/doctor/book/cash', [HomeController::class, 'cashpayment'])->name('cashpayment');
+    Route::post('/doctor/booksucc', [HomeController::class, 'booksucc'])->name('booksucc');
 
     Route::get('/bookcancel/{id}', [HomeController::class, 'cancelappointment'])->name('cancel.appointment.user');
 
+    Route::post('/payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 });
 
 
